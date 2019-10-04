@@ -1,0 +1,14 @@
+#NAME		ROLE		FIREBALL_SHOOTING	MULTIPLE_ARROW_SHOOTING		ANGRY_BIRD_CAPABLE	SECURITY_EXPERT
+
+Pramod S.	Field Marshal	Yes			Yes				Yes			Yes
+Baahubali	General		Yes			Yes				Yes			No
+Kattappa	Major General	Yes			No				Yes			No
+Krishna T.	Brigadier	No			Yes				Yes			Yes
+Mohit M.	Brigadier	No			Yes				Yes			Yes
+Dixit K.	Major		Yes			No				No			Yes
+Hariom		Captain		No			Yes				No			Yes
+Bidya S.	Lieutenant	Yes			No				Yes			Yes
+Supriya S.	Lieutenant	No			Yes				No			Yes
+Mayank R.	Lieutenant	Yes			Yes				No			Yes
+Jeewan M.	Lieutenant	No			No				Yes			Yes
+Nirjhar R.	Lieutenant	No			No				Yes			Yes
