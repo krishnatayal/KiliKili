@@ -7,43 +7,11 @@
 #define BUFSIZE 16
 #define CONTENTSIZE 1024
 
-
 char *buf, *p;
 char query1[CONTENTSIZE];
 char query2[CONTENTSIZE];
 
-void hex_decoding()
-{
-  int temp1=0;
-  int temp2=0;
-  int len=strlen(query1);
-  /* hex-encoding for input query*/
-  temp1 = 0;
-  while(query1[temp1] != '\0') {
-      int num;
-      if(temp1 + 1 < len){
-          if ((query1[temp1] >= '0' && query1[temp1] <= '9') && (query1[temp1+1] >= '0' && query1[temp1+1] <= '9')){
-              num = (query1[temp1]-'0')*16 + (query1[temp1+1]-'0');
-          }
-          else if ((query1[temp1] >= '0' && query1[temp1] <= '9') && (query1[temp1+1] >= 'a' && query1[temp1+1] <= 'f')){
-            num = (query1[temp1]-'0')*16 + (query1[temp1+1]-'a'+ 10);
-          }
-          else if ((query1[temp1] >= 'a' && query1[temp1] <= 'f') && (query1[temp1+1] >= '0' && query1[temp1+1] <= '9')){
-            num = (query1[temp1]-'a'+ 10)*16 + (query1[temp1+1]-'0');
-          }
-          else if ((query1[temp1] >= 'a' && query1[temp1] <= 'f') && (query1[temp1+1] >= 'a' && query1[temp1+1] <= 'f')){
-            num = (query1[temp1]-'a'+ 10)*16 + (query1[temp1+1]-'a'+10);
-          }
-          query2[temp2++] = num + '\0';
-          temp1 += 2;
-      }
-      else{
-        break;
-      }          
-  }
-}
-
-char *decode(char *buf)
+void decode()
 {
   CURL *curl = curl_easy_init();
   char *ptr;
@@ -53,15 +21,14 @@ char *decode(char *buf)
           exit(1);
   }
 
-  ptr = curl_easy_unescape(curl, buf, 0, 0);
-  if(!buf)
+  ptr = curl_easy_unescape(curl, query1, 0, 0);
+  if(!ptr)
   {
           printf("Error in curl decode\n");
           exit(1);
   }
 
   snprintf(query2, CONTENTSIZE, "%s", ptr);
-  return ptr;
 }
 
 int main() {
@@ -83,9 +50,7 @@ int main() {
   }
 
   snprintf(query1, CONTENTSIZE, "%s\n", getenv("QUERY_STRING"));
-  //hex_decoding();
-  //snprintf(query2, CONTENTSIZE, "%s\n", getenv("QUERY_STRING"));
-  decode(query1);
+  decode();
 
   p = strchr(query2, '&');
   *p = '\0';
@@ -99,8 +64,9 @@ int main() {
   else{
     n1 = atoi(arg1);
     n2 = atoi(arg2);
-    snprintf(content, CONTENTSIZE ,"Welcome to Division.com: THE Internet Division portal.\n<p>The answer is: %s / %s = %d, %p\n<p>Thanks for visiting!\n", 
-      arg1, arg2, n1/n2, arg2);  
+     snprintf(content, CONTENTSIZE, "<p>Jai Mahishmati! Welcome to MPTEL Divisor:\n</p>"
+                  "<p>The answer is: %s / %s = %d\n</p>Thanks for visiting!\n",
+                        arg1, arg2, n1/n2);
   }
   
   printf("\r\n");

@@ -139,7 +139,7 @@ int main(int argc, char **argv) {
     /* get the HTTP request line */
     fgets(buf, BUFSIZE, stream);
     sscanf(buf, "%s %s %s\n", method, uri, version);
-    printf("size of buf = %ld, default buffer length = %d\n buffer is %s\n", strlen(buf), BUFSIZE, buf);
+    //printf("size of buf = %d, default buffer length = %d\n buffer is %s\n", strlen(buf), BUFSIZE, buf);
 
     /* tiny only supports the GET method */
     if (strcasecmp(method, "GET")) {
@@ -188,8 +188,6 @@ int main(int argc, char **argv) {
 			 	wgiargs[temp2++] = cgiargs[temp1++];
 		 }
 		 wgiargs[temp2] = '\0';
-		 //strcpy(wgiargs, cgiargs);
-		 printf("wgiargs = %s\n", wgiargs);
         }
         else {
 	       strcpy(cgiargs, "");
